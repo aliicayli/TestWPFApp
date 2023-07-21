@@ -110,7 +110,36 @@ namespace TestWPFApp
                 {
                     throw;
                 }
+            }
+        }
 
+        public static bool AdminLogin(string adminName, string adminPassword) // Function for login control
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DBPath)) // Reference for connection SQLite database
+            {
+                try
+                {
+                    connection.Open(); // open connection
+                    string query = "SELECT admin_password FROM Admins WHERE admin_name=@adminName"; // Get password of specified name
+                    SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
+                    sQLiteCommand.Parameters.AddWithValue("@adminName", adminName);
+                    sQLiteCommand.Parameters.AddWithValue("@admin_password", adminPassword);
+                    object result = sQLiteCommand.ExecuteScalar(); //password
+                    if (result != null && result.ToString() == adminPassword) //  It returns true if the entered password is the same as the password in the database.
+
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
 

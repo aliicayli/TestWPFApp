@@ -41,7 +41,7 @@ namespace TestWPFApp
             Application.Current.Shutdown();
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e) // Login button
+        private void btnAdminLogin_Click(object sender, RoutedEventArgs e) // Login button
         {
             if (txtAdmin.Text.Length == 0 || txtAdminPass.Password == null) // All values must be entered.
             {
@@ -57,9 +57,9 @@ namespace TestWPFApp
                 }
                 return;
             }
-            if (DBConnection.Login(txtAdmin.Text, txtAdminPass.Password.ToString())) // If this function is true, Login is running.
+            if (DBConnection.AdminLogin(txtAdmin.Text, txtAdminPass.Password.ToString())) // If this function is true, Login is running.
             {
-                MessageBox.Show("Login");
+                MessageBox.Show("Login Admin");
             }
             else
             {
@@ -89,5 +89,7 @@ namespace TestWPFApp
             (sender as DispatcherTimer).Stop();
             _isTimerRunning = false;
         }
+
+      
     }
 }
