@@ -54,5 +54,12 @@ namespace TestWPFApp
             signUpWindow.Show();
             this.Close();
         }
+
+        private void btnAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            LoginAdminWindow loginAdminWindow = new LoginAdminWindow();
+            loginAdminWindow.Show();
+            this.Close();
+        }
     }
 }

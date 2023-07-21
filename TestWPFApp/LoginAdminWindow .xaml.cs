@@ -89,6 +89,5 @@ namespace TestWPFApp
             (sender as DispatcherTimer).Stop();
             _isTimerRunning = false;
         }
-
     }
 }

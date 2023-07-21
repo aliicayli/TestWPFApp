@@ -61,6 +61,41 @@
                                VerticalAlignment="Center"
                                Margin="10,0,0,0"/>
 
+                    <Button x:Name="btnAdmin"                           
+                            BorderThickness="0"
+                            Content="ADMIN"
+                            Foreground="White"
+                            FontSize="10"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="0"
+                            Margin="0,0,550,0"
+                            Click="btnAdmin_Click">
+
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#28AEED"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#278BEF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="60" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
                     <Button x:Name="btnMinimize"                           
                             BorderThickness="0"
                             Content="-"
