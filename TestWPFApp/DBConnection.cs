@@ -209,5 +209,36 @@ namespace TestWPFApp
             }
         }
 
+
+        public static void AddNewAdmin(string adminName, string password, string email, string phoneNumber)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DBPath))
+            {
+                connection.Open();
+                string query = "INSERT INTO Admins (admin_name, admin_password,admin_mail,admin_phone_number) VALUES (@adminName, @password,@email,@phone_number)"; // SQL qurey for Insert new data
+                SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
+                 sQLiteCommand.Parameters.AddWithValue("@adminName", adminName); // userName is equal to name for database parameter
+                sQLiteCommand.Parameters.AddWithValue("@password", password); // password is equal to password for database parameter
+                sQLiteCommand.Parameters.AddWithValue("@email", email); // email is equal to email for database parameter
+                sQLiteCommand.Parameters.AddWithValue("@phone_number", phoneNumber); // phone_number is equal to phoneNumber for database 
+                sQLiteCommand.ExecuteNonQuery();
+                
+            }
+        }
+
+        public static void UpdateUser(string userName, string password, string email, string phoneNumber)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DBPath))
+            {
+                connection.Open();
+                string query = "UPDATE Users SET password=@password, email=@email, phone_number=@phone_number WHERE user_name=@userName";
+                SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
+                sQLiteCommand.Parameters.AddWithValue("@userName", userName); // userName is equal to name for database parameter
+                sQLiteCommand.Parameters.AddWithValue("@password", password); // password is equal to password for database parameter
+                sQLiteCommand.Parameters.AddWithValue("@email", email); // email is equal to email for database parameter
+                sQLiteCommand.Parameters.AddWithValue("@phone_number", phoneNumber); // phone_number is equal to phoneNumber for database 
+                sQLiteCommand.ExecuteNonQuery();
+            }
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace TestWPFApp
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            DBConnection.SetCRUDParameters(0, UsersDataGrid, userNameTextBox.Text, "asd", eMailTextBox.Text, phoneTextBox.Text);
+            
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
