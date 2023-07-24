@@ -13,7 +13,6 @@ namespace TestWPFApp
         public AdminCRUD()
         {
             InitializeComponent();
-            
         }
 
 

@@ -160,56 +160,6 @@ namespace TestWPFApp
             }
         }
 
-
-        public static void SetCRUDParameters(int state,DataGrid dataGrid,string name, string password, string email, string phoneNumber)
-        {
-            using (SQLiteConnection connection= new SQLiteConnection(DBPath))
-            {
-                string query ="";
-                SQLiteCommand sQLiteCommand = new SQLiteCommand("",connection);
-                connection.Open();
-                switch (state)
-                {
-                    case 0:
-                        query =  "INSERT INTO Admins (admin_name, admin_password,admin_mail,admin_phone_number) VALUES (@adminame, @password,@email,@phone_number)"; // SQL qurey for Insert new data
-                        sQLiteCommand.CommandText = query;
-                        sQLiteCommand.Parameters.AddWithValue("@adminame", name); // userName is equal to name for database parameter
-                        sQLiteCommand.Parameters.AddWithValue("@password", password); // password is equal to password for database parameter
-                        sQLiteCommand.Parameters.AddWithValue("@email", email); // email is equal to email for database parameter
-                        sQLiteCommand.Parameters.AddWithValue("@phone_number", phoneNumber); // phone_number is equal to phoneNumber for database parameter
-                        break;
-                    case 1:
-                        
-                        sQLiteCommand.Parameters.AddWithValue("@adminame", name); // userName is equal to name for database parameter
-                        sQLiteCommand.Parameters.AddWithValue("@password", password); // password is equal to password for database parameter
-                        sQLiteCommand.Parameters.AddWithValue("@email", email); // email is equal to email for database parameter
-                        sQLiteCommand.Parameters.AddWithValue("@phone_number", phoneNumber); // phone_number is equal to phoneNumber for database parameter
-                        break;
-                    case 2:
-                         query = "DELETE FROM Users WHERE Username=@username";
-                        sQLiteCommand.CommandText = query;
-                        sQLiteCommand.Parameters.AddWithValue("@adminame", name); // userName is equal to name for database 
-                        break;
-                }
-
-                try
-                {
-                    int temp = sQLiteCommand.ExecuteNonQuery();
-                    if (temp>0)
-                    {
-
-                        ListAllUsers(dataGrid);
-                    }
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-            }
-        }
-
-
         public static void AddNewAdmin(string adminName, string password, string email, string phoneNumber)
         {
             using (SQLiteConnection connection = new SQLiteConnection(DBPath))
