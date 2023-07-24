@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace TestWPFApp
 {
@@ -21,6 +9,7 @@ namespace TestWPFApp
     /// </summary>
     public partial class AdminCRUD : Window
     {
+        string password;
         public AdminCRUD()
         {
             InitializeComponent();
@@ -35,12 +24,12 @@ namespace TestWPFApp
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            DBConnection.AddNewAdmin(userNameTextBox.Text, password, eMailTextBox.Text, phoneTextBox.Text);
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            DBConnection.UpdateUser(userNameTextBox.Text, password, eMailTextBox.Text, phoneTextBox.Text);
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -53,7 +42,8 @@ namespace TestWPFApp
             if (e.AddedItems.Count > 0)
             {
                 DataRowView dataRowView = (DataRowView)e.AddedItems[0];
-                userNameTextBox.Text = dataRowView["user_name"].ToString();         
+                userNameTextBox.Text = dataRowView["user_name"].ToString(); 
+                password = dataRowView["password"].ToString();
                 eMailTextBox.Text= dataRowView["email"].ToString();         
                 phoneTextBox.Text= dataRowView["phone_number"].ToString();         
 
