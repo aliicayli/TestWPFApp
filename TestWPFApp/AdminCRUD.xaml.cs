@@ -30,6 +30,7 @@ namespace TestWPFApp
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             DBConnection.UpdateUser(userNameTextBox.Text, password, eMailTextBox.Text, phoneTextBox.Text);
+            DBConnection.ListAllUsers(UsersDataGrid);
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
