@@ -13,7 +13,7 @@ namespace TestWPFApp
         public AdminCRUD()
         {
             InitializeComponent();
-            
+
         }
 
 
@@ -34,7 +34,8 @@ namespace TestWPFApp
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            DBConnection.DeleteUser(userNameTextBox.Text);
+            DBConnection.ListAllUsers(UsersDataGrid);
         }
 
         private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,10 +43,10 @@ namespace TestWPFApp
             if (e.AddedItems.Count > 0)
             {
                 DataRowView dataRowView = (DataRowView)e.AddedItems[0];
-                userNameTextBox.Text = dataRowView["user_name"].ToString(); 
+                userNameTextBox.Text = dataRowView["user_name"].ToString();
                 password = dataRowView["password"].ToString();
-                eMailTextBox.Text= dataRowView["email"].ToString();         
-                phoneTextBox.Text= dataRowView["phone_number"].ToString();         
+                eMailTextBox.Text = dataRowView["email"].ToString();
+                phoneTextBox.Text = dataRowView["phone_number"].ToString();
 
             }
         }
