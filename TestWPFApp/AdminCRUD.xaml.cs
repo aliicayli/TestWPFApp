@@ -34,8 +34,7 @@ namespace TestWPFApp
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            DBConnection.DeleteUser(userNameTextBox.Text);
-            DBConnection.ListAllUsers(UsersDataGrid);
+
         }
 
         private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
