@@ -240,5 +240,17 @@ namespace TestWPFApp
                 sQLiteCommand.ExecuteNonQuery();
             }
         }
+
+        public static void DeleteUser(string userName)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DBPath))
+            {
+                connection.Open();
+                string query = "DELETE FROM Users WHERE user_name=@userName";
+                SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
+                sQLiteCommand.Parameters.AddWithValue("@userName", userName); // userName is equal to name for database parameter
+                sQLiteCommand.ExecuteNonQuery();
+            }
+        }
     }
 }
