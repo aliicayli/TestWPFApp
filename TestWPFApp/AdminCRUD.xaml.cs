@@ -32,5 +32,32 @@ namespace TestWPFApp
         {
             DBConnection.ListAllUsers(UsersDataGrid);
         }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            DBConnection.SetCRUDParameters(0, UsersDataGrid, userNameTextBox.Text, "asd", eMailTextBox.Text, phoneTextBox.Text);
+        }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                DataRowView dataRowView = (DataRowView)e.AddedItems[0];
+                userNameTextBox.Text = dataRowView["user_name"].ToString();         
+                eMailTextBox.Text= dataRowView["email"].ToString();         
+                phoneTextBox.Text= dataRowView["phone_number"].ToString();         
+
+            }
+        }
     }
 }
