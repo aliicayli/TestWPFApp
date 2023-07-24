@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SQLite;
+using System.Windows;
 using System.Data.Sql;
+using System.Windows.Controls;
 
 namespace TestWPFApp
 {
@@ -143,5 +145,20 @@ namespace TestWPFApp
             }
         }
 
+
+        public static void ListAllUsers(DataGrid dataGrid)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DBPath))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Users";
+                SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
+                SQLiteDataAdapter adaptor = new SQLiteDataAdapter(sQLiteCommand);
+                DataTable dataTable = new DataTable("Users");
+                adaptor.Fill(dataTable);
+                dataGrid.ItemsSource = dataTable.DefaultView;
+            }
+        }
+            
     }
 }

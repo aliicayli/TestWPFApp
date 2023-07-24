@@ -28,3 +28,5 @@ C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\LogInOrSignUpWindow
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\LogInOrSignUpWindow.baml
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\LoginAdminWindow .g.cs
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\LoginAdminWindow .baml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\AdminCRUD.g.cs
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\AdminCRUD.baml
