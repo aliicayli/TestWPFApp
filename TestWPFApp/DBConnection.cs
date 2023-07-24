@@ -231,16 +231,13 @@ namespace TestWPFApp
             using (SQLiteConnection connection = new SQLiteConnection(DBPath))
             {
                 connection.Open();
-                string query = "UPDATE Users SET password=@password, email=@email, phone_number = @phoneNumber WHERE user_name = @userName";
+                string query = "UPDATE Users SET password=@password, email=@email, phone_number=@phone_number WHERE user_name=@userName";
                 SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
                 sQLiteCommand.Parameters.AddWithValue("@userName", userName); // userName is equal to name for database parameter
                 sQLiteCommand.Parameters.AddWithValue("@password", password); // password is equal to password for database parameter
                 sQLiteCommand.Parameters.AddWithValue("@email", email); // email is equal to email for database parameter
-                sQLiteCommand.Parameters.AddWithValue("@phoneNumber", phoneNumber); // phone_number is equal to phoneNumber for database 
+                sQLiteCommand.Parameters.AddWithValue("@phone_number", phoneNumber); // phone_number is equal to phoneNumber for database 
                 sQLiteCommand.ExecuteNonQuery();
-                int result = sQLiteCommand.ExecuteNonQuery();
-                if (result > 0)
-                    MessageBox.Show("Kayıt başarıyla güncellendi.");
             }
         }
     }
