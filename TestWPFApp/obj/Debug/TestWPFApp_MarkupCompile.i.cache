@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\App.xaml
-5-2101221369
+18-28675083
 
-11930809741
-19873136814
-AdminCRUD.xaml;LogInOrSignUpWindow.xaml;LoginAdminWindow .xaml;LoginWindow.xaml;SignUpWindow.xaml;
+35455412826
+201374170135
+AdminCRUD.xaml;DataTemplates.xaml;DesktopView.xaml;DocumentView.xaml;DownloadView.xaml;HomeView.xaml;LogInOrSignUpWindow.xaml;LoginAdminWindow .xaml;LoginWindow.xaml;MainWindow.xaml;MovieView.xaml;MusicView.xaml;PCView.xaml;PictureView.xaml;SignUpWindow.xaml;StartupView.xaml;Styles.xaml;TrashView.xaml;
 
-False
+True
 

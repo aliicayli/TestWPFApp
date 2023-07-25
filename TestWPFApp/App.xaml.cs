@@ -6,10 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace TestWPFApp
+namespace ModernDashboard
 {
     /// <summary>
-    /// App.xaml etkileşim mantığı
+    /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
