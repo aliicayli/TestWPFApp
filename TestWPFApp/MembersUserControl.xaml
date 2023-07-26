@@ -45,6 +45,7 @@
                     <TextBlock Text="Add New Member"/>
                 </StackPanel>
             </Button>
+           
 
             <!--Seprator-->
             <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
@@ -68,10 +69,11 @@
                            Visibility="{Binding ElementName=textBoxFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
 
                 <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}"/>
+                
             </Grid>
 
             <!--Members Data Grid-->
-            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged" Margin="0,9.6,0,125">
+            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged" Margin="0,9.6,0,114" Grid.RowSpan="2">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                         <DataGridCheckBoxColumn.HeaderTemplate>
@@ -114,7 +116,35 @@
                 </DataGrid.Columns>
             </DataGrid>
 
+
+            <StackPanel Grid.Row="6" Orientation="Vertical" Margin="3,10.2,592,0">
+
+                <Button Style="{StaticResource addButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="01 1 8 0" Width="11" Height="11"/>
+                        <TextBlock Text="Set as Admin"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource addButton}" Margin ="0,10,0,-10">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Update" VerticalAlignment="Center" Margin="01 1 8 0" Width="11" Height="11"/>
+                        <TextBlock Text="Update"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource addButton}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Delete" VerticalAlignment="Center" Margin="01 1 8 0" Width="11" Height="11"/>
+                        <TextBlock Text="Remove"/>
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+
+           
+
             <!--Pagingation Section-->
+           
 
         </Grid>
 
