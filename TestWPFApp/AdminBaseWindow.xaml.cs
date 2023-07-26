@@ -102,6 +102,11 @@ namespace TestWPFApp
         {
             WindowState = WindowState.Minimized;
         }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 
     public class Member
