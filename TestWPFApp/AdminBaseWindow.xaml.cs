@@ -50,6 +50,7 @@ namespace TestWPFApp
             //membersDataGrid.ItemsSource = members;
             //DBConnection.ListAllUsers(membersDataGrid);
         }
+        
 
         private bool IsMaximize = false;
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -102,16 +103,5 @@ namespace TestWPFApp
         {
             WindowState = WindowState.Minimized;
         }
-    }
-
-    public class Member
-    {
-        public string Character { get; set; }
-        public Brush BgColor { get; set; }
-        public string Number { get; set; }
-        public string Name { get; set; }
-        public string Position { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using System.Data.SQLite;
 using System.Windows;
 using System.Data.Sql;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 namespace TestWPFApp
 {
@@ -156,7 +157,15 @@ namespace TestWPFApp
                 SQLiteDataAdapter adaptor = new SQLiteDataAdapter(sQLiteCommand);
                 DataTable dataTable = new DataTable("Users");
                 adaptor.Fill(dataTable);
-                dataGrid.ItemsSource = dataTable.DefaultView;
+                ObservableCollection<Member> members = new ObservableCollection<Member>();
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    members.Add(new Member { UserName = row["user_name"].ToString(), Password = row["password"].ToString(), Email = row["email"].ToString(), PhoneNumber = row["phone_number"].ToString() });
+                }
+
+                // dataGrid.ItemsSource = dataTable.DefaultView;
+                dataGrid.ItemsSource = members;
             }
         }
 
