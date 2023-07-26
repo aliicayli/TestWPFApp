@@ -21,6 +21,7 @@ namespace TestWPFApp
     /// </summary>
     public partial class MembersUserControl : UserControl
     {
+        string password;
         public MembersUserControl()
         {
             InitializeComponent();
@@ -29,8 +30,39 @@ namespace TestWPFApp
 
         private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (membersDataGrid.SelectedItem != null)
+            {
+                Member member = membersDataGrid.SelectedItem as Member;
+                txtName.Text = member.UserName;
+                txtMail.Text = member.Email;
+                txtPhoneNumber.Text = member.PhoneNumber;
+                password = member.Password;
+            }
 
         }
+
+
+
+        private void btnSetAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            DBConnection.AddNewAdmin(txtName.Text, password, txtMail.Text, txtPhoneNumber.Text);
+
+        }
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            DBConnection.UpdateUser(txtName.Text, password, txtMail.Text, txtPhoneNumber.Text);
+            DBConnection.ListAllUsers(membersDataGrid);
+
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            DBConnection.DeleteUser(txtName.Text);
+            DBConnection.ListAllUsers(membersDataGrid);
+        }
+
+      
     }
 
     public class Member
