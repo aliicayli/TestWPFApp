@@ -7,12 +7,15 @@
 
              xmlns:local="clr-namespace:TestWPFApp"
              mc:Ignorable="d" 
-         Height="720" Width="1080"
+         Height="600" Width="800"
     d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
 
     <Grid Background="#EFF2F7"> 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="00"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -30,25 +33,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <!--Search Textbox-->
-            <Grid Width="300" HorizontalAlignment="Left">
-                <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1" Text="Search here ..."
-                           Visibility="{Binding ElementName=textBoxSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
-
-                <TextBox Name="textBoxSearch" Style="{StaticResource searchTextbox}"/>
-
-                <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
-            </Grid>
-
-            <!--Top Buttons-->
-            <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc">
-                <Icon:PackIconMaterial Kind="Cog"/>
-            </Button>
-
-            <Button Style="{StaticResource topButton}" Margin="0 0 55 0">
-                <Icon:PackIconMaterial Kind="Bell"/>
-            </Button>
+         
 
             <!--Page Title-->
             <TextBlock Text="Members" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>

@@ -48,7 +48,7 @@ namespace TestWPFApp
             //members.Add(new Member { Number = "30", Character = "S", BgColor = (Brush)converter.ConvertFromString("#0CA678"), Name = "Saeed Dasman", Position = "Coach", Email = "saeed.dasi@hotmail.com", Phone = "817-320-5052" });
 
             //membersDataGrid.ItemsSource = members;
-            DBConnection.ListAllUsers(membersDataGrid);
+            //DBConnection.ListAllUsers(membersDataGrid);
         }
 
         private bool IsMaximize = false;
@@ -79,6 +79,18 @@ namespace TestWPFApp
             {
                 this.DragMove();
             }
+        }
+
+        private void btnMembers_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMembers_Click_1(object sender, RoutedEventArgs e)
+        {
+            MembersUserControl membersUserControl = new MembersUserControl();
+
+            AdminContent.Content = membersUserControl;
         }
     }
 

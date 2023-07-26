@@ -39,3 +39,5 @@ C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\MahApps.Metro.IconP
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\MahApps.Metro.IconPacks.Material.xml
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\AdminBaseWindow.baml
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\AdminBaseWindow.g.cs
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\MembersUserControl.g.cs
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\MembersUserControl.baml

@@ -60,7 +60,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}" Background="#7B5CD6" Foreground="White">
+                            <Button x:Name="btnMembers" Style="{StaticResource menuButton}" Background="#7B5CD6" Foreground="White" Click="btnMembers_Click_1">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Members"/>
@@ -96,7 +96,7 @@
             </Grid>
 
             <!--Main Section-->
-            <Grid Grid.Column="1" Margin="30 20 20 20">
+            <Grid x:Name="grid" Grid.Column="1" Margin="30 20 20 20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -126,8 +126,9 @@
                 <Button Style="{StaticResource topButton}" Margin="0 0 55 0">
                     <Icon:PackIconMaterial Kind="Bell"/>
                 </Button>
+                <ContentControl x:Name="AdminContent" Content="ContentControl" HorizontalAlignment="Left" Margin="-3,1.4,0,-1" Grid.Row="5" VerticalAlignment="Top" Height="600" Width="800" Grid.RowSpan="2"/>
 
-              
+
 
             </Grid>
 
