@@ -52,6 +52,12 @@
                                     <TextBlock Text="Dashboard"/>
                                 </StackPanel>
                             </Button>
+                            <Button x:Name="btnMembers" Style="{StaticResource menuButton}" Click="btnMembers_Click_1">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Members"/>
+                                </StackPanel>
+                            </Button>
 
                             <Button Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
@@ -60,12 +66,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="btnMembers" Style="{StaticResource menuButton}" Background="#7B5CD6" Foreground="White" Click="btnMembers_Click_1">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Members"/>
-                                </StackPanel>
-                            </Button>
+                            
 
                             <Button Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
@@ -119,14 +120,14 @@
                 </Grid>
 
                 <!--Top Buttons-->
-                <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc">
-                    <Icon:PackIconMaterial Kind="Cog"/>
+                <Button x:Name="btnClose" Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc" Click="btnClose_Click">
+                    <Icon:PackIconMaterial Kind="Close"/>
                 </Button>
 
-                <Button Style="{StaticResource topButton}" Margin="0 0 55 0">
-                    <Icon:PackIconMaterial Kind="Bell"/>
+                <Button x:Name="btnMinimize" Style="{StaticResource topButton}" Margin="0 0 55 0" Click="btnMinimize_Click">
+                    <Icon:PackIconMaterial Kind="WindowMinimize"/>
                 </Button>
-                <ContentControl x:Name="AdminContent" Content="ContentControl" HorizontalAlignment="Left" Margin="-3,1.4,0,-1" Grid.Row="5" VerticalAlignment="Top" Height="600" Width="800" Grid.RowSpan="2"/>
+                <ContentControl x:Name="AdminContent" Content="" HorizontalAlignment="Left" Margin="-3,1.4,0,-1" Grid.Row="5" VerticalAlignment="Top" Height="600" Width="800" Grid.RowSpan="2"/>
 
 
 
