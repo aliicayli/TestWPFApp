@@ -12,7 +12,7 @@
     </Window.Resources>
 
     <Border CornerRadius="30" Background="#EFF2F7" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown" >
-        <Grid Loaded="Grid_Loaded">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*"/>
@@ -33,14 +33,14 @@
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/icons8-windows-11-100.png"/>
+                                    <ImageBrush ImageSource="/Images/p1.jpg"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock x:Name="txtAdminName" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
-                        <TextBlock x:Name="txtEmail" Foreground="#D0BFFF" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
+                        <TextBlock Text="Silvers Club" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                        <TextBlock Text="Members, France" Foreground="#D0BFFF" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
                         <!--Menu Seprator-->
                         <Separator Margin="25" Background="#7E5FDC" DockPanel.Dock="Top" Height="0.8"/>
 
