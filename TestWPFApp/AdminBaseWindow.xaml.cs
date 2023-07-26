@@ -103,5 +103,6 @@ namespace TestWPFApp
         {
             WindowState = WindowState.Minimized;
         }
+
     }
 }

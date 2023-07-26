@@ -33,14 +33,14 @@
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/p1.jpg"/>
+                                    <ImageBrush ImageSource="/Images/icons8-windows-11-100.png"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock Text="Silvers Club" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
-                        <TextBlock Text="Members, France" Foreground="#D0BFFF" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
+                        <TextBlock x:Name="txtHeaderName" Text="Silvers Club" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                        <TextBlock Foreground="#D0BFFF" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"><Run Text=""/><LineBreak/><Run/></TextBlock>
                         <!--Menu Seprator-->
                         <Separator Margin="25" Background="#7E5FDC" DockPanel.Dock="Top" Height="0.8"/>
 
@@ -66,7 +66,7 @@
                                 </StackPanel>
                             </Button>
 
-                            
+
 
                             <Button Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
@@ -98,6 +98,10 @@
 
             <!--Main Section-->
             <Grid x:Name="grid" Grid.Column="1" Margin="30 20 20 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="621*"/>
+                    <ColumnDefinition Width="209*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -109,7 +113,7 @@
                 </Grid.RowDefinitions>
 
                 <!--Search Textbox-->
-                <Grid Width="300" HorizontalAlignment="Left">
+                <Grid Width="300" HorizontalAlignment="Left" Margin="0,0,0,622" Grid.RowSpan="6">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="Search here ..."
                            Visibility="{Binding ElementName=textBoxSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
@@ -120,14 +124,14 @@
                 </Grid>
 
                 <!--Top Buttons-->
-                <Button x:Name="btnClose" Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc" Click="btnClose_Click">
+                <Button x:Name="btnClose" Style="{StaticResource topButton}" Margin="0,14,20,13.6" Background="#dcdcdc" Click="btnClose_Click" Grid.Column="1">
                     <Icon:PackIconMaterial Kind="Close"/>
                 </Button>
 
-                <Button x:Name="btnMinimize" Style="{StaticResource topButton}" Margin="0 0 55 0" Click="btnMinimize_Click">
+                <Button x:Name="btnMinimize" Style="{StaticResource topButton}" Margin="0,14,55,13.6" Click="btnMinimize_Click" Grid.Column="1">
                     <Icon:PackIconMaterial Kind="WindowMinimize"/>
                 </Button>
-                <ContentControl x:Name="AdminContent" Content="" HorizontalAlignment="Left" Margin="-3,1.4,0,-1" Grid.Row="5" VerticalAlignment="Top" Height="600" Width="800" Grid.RowSpan="2"/>
+                <ContentControl x:Name="AdminContent" Content="" HorizontalAlignment="Left" Margin="-3,1.4,0,0" Grid.Row="5" VerticalAlignment="Top" Height="600" Width="800" Grid.ColumnSpan="2"/>
 
 
 

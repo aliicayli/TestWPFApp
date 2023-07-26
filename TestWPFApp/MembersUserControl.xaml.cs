@@ -22,6 +22,7 @@ namespace TestWPFApp
     public partial class MembersUserControl : UserControl
     {
         string password;
+        string name;
         public MembersUserControl()
         {
             InitializeComponent();
@@ -62,7 +63,7 @@ namespace TestWPFApp
             DBConnection.ListAllUsers(membersDataGrid);
         }
 
-      
+    
     }
 
     public class Member

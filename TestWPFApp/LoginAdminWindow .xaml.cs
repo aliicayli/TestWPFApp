@@ -68,7 +68,7 @@ namespace TestWPFApp
                 adminBaseWindow.Show();
                 this.Close();
 
-                
+                adminBaseWindow.txtHeaderName.Text = txtAdmin.Text;
 
 
 
