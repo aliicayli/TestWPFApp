@@ -30,3 +30,12 @@ C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\LoginAdminWindow .g
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\LoginAdminWindow .baml
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\AdminCRUD.g.cs
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\AdminCRUD.baml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\App.baml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\MahApps.Metro.IconPacks.Core.dll
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\MahApps.Metro.IconPacks.Material.dll
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\MahApps.Metro.IconPacks.Core.pdb
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\MahApps.Metro.IconPacks.Core.xml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\MahApps.Metro.IconPacks.Material.pdb
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\MahApps.Metro.IconPacks.Material.xml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\AdminBaseWindow.baml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\AdminBaseWindow.g.cs

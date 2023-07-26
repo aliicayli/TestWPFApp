@@ -59,9 +59,22 @@ namespace TestWPFApp
             }
             if (DBConnection.AdminLogin(txtAdmin.Text, txtAdminPass.Password.ToString())) // If this function is true, Login is running.
             {
-                AdminCRUD adminCRUD = new AdminCRUD();
-                adminCRUD.Show();
+                //AdminCRUD adminCRUD = new AdminCRUD();
+                //adminCRUD.Show();
+                //this.Close();
+
+
+                AdminBaseWindow adminBaseWindow = new AdminBaseWindow();
+                adminBaseWindow.Show();
                 this.Close();
+
+                
+
+
+
+
+
+
             }
             else
             {
