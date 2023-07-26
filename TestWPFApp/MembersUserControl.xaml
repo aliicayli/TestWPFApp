@@ -13,13 +13,13 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
 
-    <Grid Background="#EFF2F7"> 
+    <Grid Background="#EFF2F7">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="00"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        
+
 
         <!--Main Section-->
         <Grid Grid.Column="1" Margin="30 20 20 20">
@@ -33,7 +33,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-         
+
 
             <!--Page Title-->
             <TextBlock Text="Members" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
@@ -45,7 +45,7 @@
                     <TextBlock Text="Add New Member"/>
                 </StackPanel>
             </Button>
-           
+
 
             <!--Seprator-->
             <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
@@ -69,11 +69,11 @@
                            Visibility="{Binding ElementName=textBoxFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
 
                 <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}"/>
-                
+
             </Grid>
 
             <!--Members Data Grid-->
-            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged" Margin="0,9.6,0,173">
+            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}" SelectionChanged="membersDataGrid_SelectionChanged" Margin="0,9.6,0,129">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                         <DataGridCheckBoxColumn.HeaderTemplate>
@@ -119,32 +119,31 @@
 
 
 
-            <StackPanel Grid.Row="5" Orientation="Vertical" Margin="0,200,588,0">
-                <Button x:Name="btnSetAdmin" Style="{StaticResource addButton}" Click="btnSetAdmin_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                        <TextBlock Text="Set as Admin"/>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="btnUpdate" Style="{StaticResource addButton}" Click="btnUpdate_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                        <TextBlock Text="Update"/>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="btnDelete" Style="{StaticResource addButton}" Click="btnDelete_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                        <TextBlock Text="Delete"/>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-            <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="400,220,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="txtMail" HorizontalAlignment="Left" Height="23" Margin="400,280,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="txtPhoneNumber" HorizontalAlignment="Left" Height="23" Margin="400,335,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <Label Content="User Name" HorizontalAlignment="Left" Margin="300,220.6,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-1.523,0.824"/>
-            <Label Content="EMail" HorizontalAlignment="Left" Margin="300,280.6,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-1.523,0.824"/>
-            <Label Content="Phone Number" HorizontalAlignment="Left" Margin="300,335.6,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-1.523,0.824"/>
+            <StackPanel Grid.Row="5"  Margin="0,200,588,0"/>
+            <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="500,260.6,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="txtMail" HorizontalAlignment="Left" Height="23" Margin="500,300.6,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="txtPhoneNumber" HorizontalAlignment="Left" Height="23" Margin="500,340.6,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <Label Content="User Name" HorizontalAlignment="Left" Margin="400,260.6,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-1.523,0.824"/>
+            <Label Content="EMail" HorizontalAlignment="Left" Margin="400,300.6,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-1.523,0.824"/>
+            <Label Content="Phone Number" HorizontalAlignment="Left" Margin="400,340.6,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-1.523,0.824"/>
+            <Button x:Name="btnSetAdmin" Style="{StaticResource addButton}" Click="btnSetAdmin_Click" Margin="0,298.6,598,48" Height="Auto" Grid.Row="5">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                    <TextBlock Text="Set as Admin"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnUpdate" Style="{StaticResource addButton}" Click="btnUpdate_Click" Margin="0,296.6,432,50" Height="Auto" Grid.Row="5">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                    <TextBlock Text="Update"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnDelete" Style="{StaticResource addButton}" Click="btnDelete_Click" Margin="0,339.6,514,7" Height="Auto" Grid.Row="5">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                    <TextBlock Text="Delete"/>
+                </StackPanel>
+            </Button>
 
 
 
