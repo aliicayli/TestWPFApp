@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace TestWPFApp
 {
@@ -23,6 +24,8 @@ namespace TestWPFApp
     {
         string password;
         string name;
+        private bool _isTimerRunning = false; // bool variable for thread
+
         public MembersUserControl()
         {
             InitializeComponent();
@@ -46,15 +49,53 @@ namespace TestWPFApp
 
         private void btnSetAdmin_Click(object sender, RoutedEventArgs e)
         {
-            DBConnection.AddNewAdmin(txtName.Text, password, txtMail.Text, txtPhoneNumber.Text);
-
+            if (txtMail.Text.Length == 0 || password.Length == 0|| txtMail.Text.Length == 0 || txtPhoneNumber.Text.Length == 0)
+            {
+                infoText.Visibility = Visibility.Visible; // opening visibility of info text
+                infoText.Content = "Fill all required fields"; // info text message
+                if (!_isTimerRunning) // Statement for thread. If the thread is running, it will not run again.
+                {
+                    DispatcherTimer timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromSeconds(2);
+                    timer.Tick += Timer_Tick; // listening for event
+                    timer.Start();
+                    _isTimerRunning = true;
+                }
+                return;
+            }
+            if (DBConnection.AddNewAdmin(txtName.Text, password, txtMail.Text, txtPhoneNumber.Text))
+            {
+                infoText.Visibility = Visibility.Visible; // opening visibility of info text
+                infoText.Content = "User is now admin"; // info text message
+                if (!_isTimerRunning) // Statement for thread. If the thread is running, it will not run again.
+                {
+                    DispatcherTimer timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromSeconds(2);
+                    timer.Tick += Timer_Tick; // listening for event
+                    timer.Start();
+                    _isTimerRunning = true;
+                }
+            }
+            else
+            {
+                infoText.Visibility = Visibility.Visible; // opening visibility of info text
+                infoText.Content = "User is already admin"; // info text message
+                if (!_isTimerRunning) // Statement for thread. If the thread is running, it will not run again.
+                {
+                    DispatcherTimer timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromSeconds(2);
+                    timer.Tick += Timer_Tick; // listening for event
+                    timer.Start();
+                    _isTimerRunning = true;
+                }
+            }
         }
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             DBConnection.UpdateUser(txtName.Text, password, txtMail.Text, txtPhoneNumber.Text);
             DBConnection.ListAllUsers(membersDataGrid);
-
-
+            infoText.Visibility = Visibility.Visible; // opening visibility of info text
+            infoText.Content = "Fill all required fields"; // info text 
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -63,7 +104,12 @@ namespace TestWPFApp
             DBConnection.ListAllUsers(membersDataGrid);
         }
 
-    
+        private void Timer_Tick(object sender, EventArgs e) // For timer
+        {
+            infoText.Visibility = Visibility.Collapsed;
+            (sender as DispatcherTimer).Stop();
+            _isTimerRunning = false;
+        }
     }
 
     public class Member
