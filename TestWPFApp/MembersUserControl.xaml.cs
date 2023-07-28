@@ -49,10 +49,6 @@ namespace TestWPFApp
 
         private void btnSetAdmin_Click(object sender, RoutedEventArgs e)
         {
-            if (password == null)
-            {
-                return;
-            }
             if (txtMail.Text.Length == 0 || password.Length == 0|| txtMail.Text.Length == 0 || txtPhoneNumber.Text.Length == 0)
             {
                 infoText.Visibility = Visibility.Visible; // opening visibility of info text
@@ -99,57 +95,13 @@ namespace TestWPFApp
             DBConnection.UpdateUser(txtName.Text, password, txtMail.Text, txtPhoneNumber.Text);
             DBConnection.ListAllUsers(membersDataGrid);
             infoText.Visibility = Visibility.Visible; // opening visibility of info text
+            infoText.Content = "Fill all required fields"; // info text 
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (password == null)
-            {
-                return;
-            }
-            if (txtMail.Text.Length == 0 || password.Length == 0  || txtMail.Text.Length == 0 || txtPhoneNumber.Text.Length == 0)
-            {
-                infoText.Visibility = Visibility.Visible; // opening visibility of info text
-                infoText.Content = "Fill all required fields"; // info text message
-                if (!_isTimerRunning) // Statement for thread. If the thread is running, it will not run again.
-                {
-                    DispatcherTimer timer = new DispatcherTimer();
-                    timer.Interval = TimeSpan.FromSeconds(2);
-                    timer.Tick += Timer_Tick; // listening for event
-                    timer.Start();
-                    _isTimerRunning = true;
-                }
-                return;
-            }
-
-            if (DBConnection.DeleteUser(txtName.Text))
-            {
-                infoText.Visibility = Visibility.Visible; // opening visibility of info text
-                infoText.Content = "Deleted user from Members"; // info text message
-                if (!_isTimerRunning) // Statement for thread. If the thread is running, it will not run again.
-                {
-                    DispatcherTimer timer = new DispatcherTimer();
-                    timer.Interval = TimeSpan.FromSeconds(2);
-                    timer.Tick += Timer_Tick; // listening for event
-                    timer.Start();
-                    _isTimerRunning = true;
-                }
-            }
-            else
-            {
-                infoText.Visibility = Visibility.Visible; // opening visibility of info text
-                infoText.Content = "No such as this user"; // info text message
-                if (!_isTimerRunning) // Statement for thread. If the thread is running, it will not run again.
-                {
-                    DispatcherTimer timer = new DispatcherTimer();
-                    timer.Interval = TimeSpan.FromSeconds(2);
-                    timer.Tick += Timer_Tick; // listening for event
-                    timer.Start();
-                    _isTimerRunning = true;
-                }
-            }
+            DBConnection.DeleteUser(txtName.Text);
             DBConnection.ListAllUsers(membersDataGrid);
-
         }
 
         private void Timer_Tick(object sender, EventArgs e) // For timer

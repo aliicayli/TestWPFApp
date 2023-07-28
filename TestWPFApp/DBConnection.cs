@@ -178,7 +178,7 @@ namespace TestWPFApp
                 string query = "SELECT 1 FROM Admins WHERE admin_name = @adminName"; // Checking if there is a record with the same name
 
                 SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
-                sQLiteCommand.Parameters.AddWithValue("@adminName", adminName); // userName is equal to name for database parameter
+                 sQLiteCommand.Parameters.AddWithValue("@adminName", adminName); // userName is equal to name for database parameter
                 sQLiteCommand.Parameters.AddWithValue("@password", password); // password is equal to password for database parameter
                 sQLiteCommand.Parameters.AddWithValue("@email", email); // email is equal to email for database parameter
                 sQLiteCommand.Parameters.AddWithValue("@phone_number", phoneNumber); // phone_number is equal to phoneNumber for database 
@@ -212,29 +212,16 @@ namespace TestWPFApp
             }
         }
 
-        public static bool DeleteUser(string userName)
+        public static void DeleteUser(string userName)
         {
             using (SQLiteConnection connection = new SQLiteConnection(DBPath))
             {
                 connection.Open();
-                string query = "SELECT COUNT(*) FROM Users WHERE user_name=@userName";
+                string query = "DELETE FROM Users WHERE user_name=@userName";
                 SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
                 sQLiteCommand.Parameters.AddWithValue("@userName", userName); // userName is equal to name for database 
-                int count = Convert.ToInt32(sQLiteCommand.ExecuteScalar());
-                if (count > 0)
-                {
-                    query = "DELETE FROM Users WHERE user_name=@userName";
-                    sQLiteCommand = new SQLiteCommand(query, connection);
-                    sQLiteCommand.Parameters.AddWithValue("@userName", userName); // userName is equal to name for database 
-                    sQLiteCommand.ExecuteNonQuery();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                sQLiteCommand.ExecuteNonQuery();
             }
         }
     }
 }
-
