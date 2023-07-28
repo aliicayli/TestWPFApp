@@ -148,7 +148,9 @@ namespace TestWPFApp
                     _isTimerRunning = true;
                 }
             }
-            DBConnection.ListAllUsers(membersDataGrid);
+            var item = (sender as FrameworkElement).DataContext;
+            membersDataGrid.Items.Remove(item);
+               //DBConnection.ListAllUsers(membersDataGrid);
 
         }
 
@@ -158,6 +160,7 @@ namespace TestWPFApp
             (sender as DispatcherTimer).Stop();
             _isTimerRunning = false;
         }
+
     }
 
     public class Member
