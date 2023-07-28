@@ -123,7 +123,6 @@ namespace TestWPFApp
                 try
                 {
                     connection.Open(); // open connection
-
                     string query = "SELECT admin_password FROM Admins WHERE admin_name=@adminName"; // Get password of specified name
                     SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
                     sQLiteCommand.Parameters.AddWithValue("@adminName", adminName);
@@ -170,30 +169,19 @@ namespace TestWPFApp
             }
         }
 
-        public static bool AddNewAdmin(string adminName, string password, string email, string phoneNumber)
+        public static void AddNewAdmin(string adminName, string password, string email, string phoneNumber)
         {
             using (SQLiteConnection connection = new SQLiteConnection(DBPath))
             {
                 connection.Open();
-                string query = "SELECT 1 FROM Admins WHERE admin_name = @adminName"; // Checking if there is a record with the same name
-
+                string query = "INSERT INTO Admins (admin_name, admin_password,admin_mail,admin_phone_number) VALUES (@adminName, @password,@email,@phone_number)"; // SQL qurey for Insert new data
                 SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
                  sQLiteCommand.Parameters.AddWithValue("@adminName", adminName); // userName is equal to name for database parameter
                 sQLiteCommand.Parameters.AddWithValue("@password", password); // password is equal to password for database parameter
                 sQLiteCommand.Parameters.AddWithValue("@email", email); // email is equal to email for database parameter
                 sQLiteCommand.Parameters.AddWithValue("@phone_number", phoneNumber); // phone_number is equal to phoneNumber for database 
-                object result = sQLiteCommand.ExecuteScalar(); // execute query for result
-                if (result == null) // Checking name is null ?
-                {
-                    query = "INSERT INTO Admins (admin_name, admin_password,admin_mail,admin_phone_number) VALUES (@adminName, @password,@email,@phone_number)"; // SQL qurey for Insert new data
-                    sQLiteCommand.CommandText = query;
-                    sQLiteCommand.ExecuteNonQuery();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                sQLiteCommand.ExecuteNonQuery();
+                
             }
         }
 
