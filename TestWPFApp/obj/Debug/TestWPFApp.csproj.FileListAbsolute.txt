@@ -41,3 +41,15 @@ C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\AdminBaseWindow.bam
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\AdminBaseWindow.g.cs
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\MembersUserControl.g.cs
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\MembersUserControl.baml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\EPPlus.dll
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\EPPlus.xml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\TestWPFApp.exe.config
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\ClosedXML.dll
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\System.Memory.dll
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\System.Buffers.dll
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\ClosedXML.xml
