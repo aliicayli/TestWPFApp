@@ -55,3 +55,5 @@ C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\System.Numerics.Vec
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\ClosedXML.xml
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\Aspose.Cells.GridDesktop.dll
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\bin\Debug\Aspose.Cells.GridDesktop.xml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\test.g.cs
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\test.baml

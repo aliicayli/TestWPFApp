@@ -8,7 +8,10 @@
              xmlns:local="clr-namespace:TestWPFApp"
              mc:Ignorable="d" 
          Height="600" Width="800"
-    d:DesignHeight="450" d:DesignWidth="800">
+    d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+
+xmlns:gridDesktop="clr-namespace:Aspose.Cells.GridDesktop;assembly=Aspose.Cells.GridDesktop">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
@@ -157,8 +160,12 @@
             <Label x:Name="infoText" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="1,345.8,-2.6,-20" Grid.Row="5" VerticalAlignment="Top" Height="27" Width="352" Grid.RowSpan="2"/>
 
 
+            
+            
 
         </Grid>
+        
+        
 
     </Grid>
 </UserControl>

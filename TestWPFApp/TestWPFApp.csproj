@@ -99,9 +99,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -130,6 +132,9 @@
     </Compile>
     <Compile Include="AdminBaseWindow.xaml.cs">
       <DependentUpon>AdminBaseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="test.xaml.cs">
+      <DependentUpon>test.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AdminBaseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

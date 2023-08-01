@@ -247,6 +247,41 @@ namespace TestWPFApp
 
         private void btnOpenExcelLibreOffice_Click(object sender, RoutedEventArgs e)
         {
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //// Sadece excel dosyalarını göster
+            //openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            //// İletişim kutusunu göster ve sonucu al
+            //bool? result = openFileDialog.ShowDialog();
+            //// Eğer kullanıcı bir dosya seçtiyse
+            //if (result == true)
+            //{
+            //    // Seçilen dosyanın yolunu al
+            //    string filePath = openFileDialog.FileName;
+            //    try
+            //    {
+            //        // Kayıt defterinden libreoffice programının pathini al
+            //        //string libreOfficePath = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\LibreOffice\UNO\InstallPath", "", null) as string;
+            //        string libreOfficePath = "C:\\Program Files\\LibreOffice\\program\\soffice.exe";
+
+
+            //        // string libreOfficePath = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\LibreOffice\UNO\InstallPath", "", null) as string;
+            //        // Pathi soffice.exe ile birleştir
+            //        //libreOfficePath = Path.Combine(libreOfficePath, "soffice.exe");
+            //        // Libreoffice programını ve seçilen dosyayı parametre olarak vererek çalıştır
+            //        Process.Start(libreOfficePath, filePath);
+            //    }
+            //    catch (System.ComponentModel.Win32Exception ex)
+            //    {
+            //        // Hata mesajını göster
+            //        MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    }
+            //}
+
+
+
+
+
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             // Sadece excel dosyalarını göster
             openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
@@ -259,16 +294,9 @@ namespace TestWPFApp
                 string filePath = openFileDialog.FileName;
                 try
                 {
-                    // Kayıt defterinden libreoffice programının pathini al
-                    //string libreOfficePath = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\LibreOffice\UNO\InstallPath", "", null) as string;
-                    string libreOfficePath = "C:\\Program Files\\LibreOffice\\program\\soffice.exe";
-
-
-                    // string libreOfficePath = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\LibreOffice\UNO\InstallPath", "", null) as string;
-                    // Pathi soffice.exe ile birleştir
-                    //libreOfficePath = Path.Combine(libreOfficePath, "soffice.exe");
-                    // Libreoffice programını ve seçilen dosyayı parametre olarak vererek çalıştır
-                    Process.Start(libreOfficePath, filePath);
+                    test test = new test();
+                    test.path = filePath;
+                    test.Show();
                 }
                 catch (System.ComponentModel.Win32Exception ex)
                 {
@@ -278,6 +306,16 @@ namespace TestWPFApp
             }
 
 
+           
+
+        }
+
+
+        public void Save()
+        {
+            test a = new test();
+            // Excel dosyasını kaydetmek isteyip istemediğinizi soran bir dialog oluşturun
+           
         }
     }
 
