@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -21,6 +22,7 @@ using System.Windows.Threading;
 using Microsoft.Win32;
 using OfficeOpenXml;
 using OfficeOpenXml.Table;
+using Aspose.Cells;
 
 namespace TestWPFApp
 {
@@ -155,9 +157,9 @@ namespace TestWPFApp
                     _isTimerRunning = true;
                 }
             }
-            var item = (sender as FrameworkElement).DataContext;
-            membersDataGrid.Items.Remove(item);
-            //DBConnection.ListAllUsers(membersDataGrid);
+            //var item = (sender as FrameworkElement).DataContext;
+            //membersDataGrid.Items.Remove(item);
+            DBConnection.ListAllUsers(membersDataGrid);
 
         }
 
@@ -228,7 +230,7 @@ namespace TestWPFApp
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ObservableCollection<Member> members = new ObservableCollection<Member>();
             members = (ObservableCollection<Member>)membersDataGrid.ItemsSource;
-            DataTable dt = members.ToDataTable();
+            DataTable dt = members.ConvertDataTable();
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(filePath)))
             {
                 ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Data");
@@ -243,9 +245,40 @@ namespace TestWPFApp
 
         }
 
+        private void btnOpenExcelLibreOffice_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            // Sadece excel dosyalarını göster
+            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            // İletişim kutusunu göster ve sonucu al
+            bool? result = openFileDialog.ShowDialog();
+            // Eğer kullanıcı bir dosya seçtiyse
+            if (result == true)
+            {
+                // Seçilen dosyanın yolunu al
+                string filePath = openFileDialog.FileName;
+                try
+                {
+                    // Kayıt defterinden libreoffice programının pathini al
+                    //string libreOfficePath = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\LibreOffice\UNO\InstallPath", "", null) as string;
+                    string libreOfficePath = "C:\\Program Files\\LibreOffice\\program\\soffice.exe";
 
 
+                    // string libreOfficePath = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\LibreOffice\UNO\InstallPath", "", null) as string;
+                    // Pathi soffice.exe ile birleştir
+                    //libreOfficePath = Path.Combine(libreOfficePath, "soffice.exe");
+                    // Libreoffice programını ve seçilen dosyayı parametre olarak vererek çalıştır
+                    Process.Start(libreOfficePath, filePath);
+                }
+                catch (System.ComponentModel.Win32Exception ex)
+                {
+                    // Hata mesajını göster
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
 
+
+        }
     }
 
     public class Member
@@ -257,9 +290,9 @@ namespace TestWPFApp
         public string Password { get; set; }
         public string Email { get; set; }
     }
-    public static class Test
+    public static class Extension
     {
-        public static DataTable ToDataTable<T>(this ObservableCollection<T> collection)
+        public static DataTable ConvertDataTable<T>(this ObservableCollection<T> collection)
         {
             DataTable dt = new DataTable();
             PropertyInfo[] props = typeof(T).GetProperties();
@@ -278,4 +311,5 @@ namespace TestWPFApp
             }
             return dt;
         }
-    } }
+    }
+}

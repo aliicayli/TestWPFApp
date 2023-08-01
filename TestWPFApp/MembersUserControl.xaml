@@ -49,6 +49,12 @@
                     <TextBlock Text="Save to Excel"/>
                 </StackPanel>
             </Button>
+            <Button x:Name="btnOpenExcelLibreOffice" Style="{StaticResource addButton}" Grid.Column="0" Margin="0,24,0,3.4" Click="btnOpenExcelLibreOffice_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                    <TextBlock Text="Open Excel Libre Office"/>
+                </StackPanel>
+            </Button>
 
 
             <!--Seprator-->
