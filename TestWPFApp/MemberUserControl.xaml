@@ -160,12 +160,12 @@ xmlns:gridDesktop="clr-namespace:Aspose.Cells.GridDesktop;assembly=Aspose.Cells.
             <Label x:Name="infoText" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="1,345.8,-2.6,-20" Grid.Row="5" VerticalAlignment="Top" Height="27" Width="352" Grid.RowSpan="2"/>
 
 
-            
-            
+
+
 
         </Grid>
-        
-        
+
+
 
     </Grid>
 </UserControl>

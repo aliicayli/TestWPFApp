@@ -12,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Aspose.Cells.GridDesktop;
 
 namespace TestWPFApp
 {
@@ -35,6 +34,9 @@ namespace TestWPFApp
 
         private void Window_Closed(object sender, EventArgs e)
         {
+
+
+
             var result = MessageBox.Show("Excel dosyasını kaydetmek istiyor musunuz?", "Kaydet", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
 
             // Dialogdan dönen sonuca göre işlem yapın

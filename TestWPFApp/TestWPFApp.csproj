@@ -124,8 +124,8 @@
     <Compile Include="LoginAdminWindow .xaml.cs">
       <DependentUpon>LoginAdminWindow .xaml</DependentUpon>
     </Compile>
-    <Compile Include="MembersUserControl.xaml.cs">
-      <DependentUpon>MembersUserControl.xaml</DependentUpon>
+    <Compile Include="MemberUserControl.xaml.cs">
+      <DependentUpon>MemberUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
@@ -190,7 +190,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MembersUserControl.xaml">
+    <Page Include="MemberUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
