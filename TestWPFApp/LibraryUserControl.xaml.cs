@@ -39,7 +39,7 @@ namespace TestWPFApp
             InitializeComponent();
             comboboxLibraryContex = new string[] { "Table", "Chair", "Cupboard" };
             DataContext = this ;
-        DBConnection.ListAllUsers(membersDataGrid);
+        DBConnection.ListAllLibraryDatas(librariesDataGrid);
         }
 
         private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -379,9 +379,9 @@ namespace TestWPFApp
     {
         public string Character { get; set; }
         public Brush BgColor { get; set; }
-        public string PhoneNumber { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public string Color { get; set; }
+        public string ProductName { get; set; }
+        public string Price { get; set; }
         public string Email { get; set; }
     }
    

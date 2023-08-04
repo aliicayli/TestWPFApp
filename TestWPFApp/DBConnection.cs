@@ -273,6 +273,39 @@ namespace TestWPFApp
                     throw;
                 }
             }
+
+
+        }
+        public static void ListAllLibraryDatas(DataGrid dataGrid)
+        {
+            string[] libraryDataNames = new string[] { "TablesForLibrary", "ChairsForLibrary", "CupBoardsForLibrary" };
+            ObservableCollection<Library> libraries = new ObservableCollection<Library>();
+
+            using (SQLiteConnection connection = new SQLiteConnection(DBPath))
+            {
+                connection.Open();
+                for (int i = 0; i < libraryDataNames.Length; i++)
+                {
+                    string query = "SELECT * FROM "+ libraryDataNames[i];
+                    SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
+                    SQLiteDataAdapter adaptor = new SQLiteDataAdapter(sQLiteCommand);
+                    DataTable dataTable = new DataTable(libraryDataNames[i]);
+                    adaptor.Fill(dataTable);
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        libraries.Add(new Library { ProductName = row["productName"].ToString(), Price = row["price"].ToString(), Color = row["color"].ToString() });
+                    }
+                }
+
+
+
+
+
+
+                // dataGrid.ItemsSource = dataTable.DefaultView;
+                dataGrid.ItemsSource = libraries;
+            }
         }
     }
 }
