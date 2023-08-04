@@ -237,23 +237,33 @@ namespace TestWPFApp
         }
 
 
-        public static bool AddNewLibraryData(string productName, string price, string color) // Function for new user
+        public static void AddNewLibraryData(string dataType, string productName, string price, string color) // Function for new user
         {
+            LibraryUserControl libraryUserControl = new LibraryUserControl();
+
+            string query = "";
             using (SQLiteConnection connection = new SQLiteConnection(DBPath)) // Reference for connection SQLite database
             {
                 try
                 {
                     connection.Open(); // open connection
-                    string query = "INSERT INTO TablesForLibrary (productName, price,color) VALUES (@productName, @price,@color)"; // SQL qurey for Insert new data
+
+
+
+
+                    query = "INSERT INTO " + dataType + " (productName, price,color) VALUES (@productName, @price,@color)"; // SQL qurey for Insert new data
+
                     SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection); // new sQLiteCommand for query
                     sQLiteCommand.Parameters.AddWithValue("@productName", productName); // userName is equal to name for database parameter
                     sQLiteCommand.Parameters.AddWithValue("@price", price); // password is equal to password for database parameter
                     sQLiteCommand.Parameters.AddWithValue("@color", color); // email is equal to email for database parameter
-                    //object result = sQLiteCommand.ExecuteScalar(); // execute query for result
+                                                                            //object result = sQLiteCommand.ExecuteScalar(); // execute query for result
 
                     sQLiteCommand.CommandText = query;
                     sQLiteCommand.ExecuteNonQuery();
-                    return true;
+
+
+
 
 
 

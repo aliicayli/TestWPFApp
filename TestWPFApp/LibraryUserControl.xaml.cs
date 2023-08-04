@@ -31,14 +31,14 @@ namespace TestWPFApp
     /// </summary>
     public partial class LibraryUserControl : UserControl
     {
-        string[] comboboxLibraryContex;
+        public string[] comboboxLibraryContex { get; set; }
         private bool _isTimerRunning = false; // bool variable for thread
 
         public LibraryUserControl()
         {
             InitializeComponent();
             comboboxLibraryContex = new string[] { "Table", "Chair", "Cupboard" };
-        
+            DataContext = this ;
         DBConnection.ListAllUsers(membersDataGrid);
         }
 
@@ -166,9 +166,9 @@ namespace TestWPFApp
 
         private void Timer_Tick(object sender, EventArgs e) // For timer
         {
-            //infoText.Visibility = Visibility.Collapsed;
-            //(sender as DispatcherTimer).Stop();
-            //_isTimerRunning = false;
+            infoText.Visibility = Visibility.Collapsed;
+            (sender as DispatcherTimer).Stop();
+            _isTimerRunning = false;
         }
 
         private void btnExcel_Click(object sender, RoutedEventArgs e)
@@ -321,8 +321,57 @@ namespace TestWPFApp
 
         private void btnAddData_Click(object sender, RoutedEventArgs e)
         {
-            DBConnection.AddNewLibraryData(txtProductName.Text, txtPrice.Text, txtColor.Text);
 
+            if (txtProductName.Text.Length == 0 ||txtPrice.Text.Length == 0 || txtColor.Text.Length == 0)
+            {
+                infoText.Visibility = Visibility.Visible; // opening visibility of info text
+                infoText.Content = "Fill all required fields"; // info text message
+                if (!_isTimerRunning) // Statement for thread. If the thread is running, it will not run again.
+                {
+                    DispatcherTimer timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromSeconds(2);
+                    timer.Tick += Timer_Tick; // listening for event
+                    timer.Start();
+                    _isTimerRunning = true;
+                }
+                return;
+            }
+
+            if (comboBoxLibraryData.SelectedItem.ToString().Length == 0)
+            {
+                infoText.Visibility = Visibility.Visible; // opening visibility of info text
+                infoText.Content = "Plase Select a category"; // info text message
+                if (!_isTimerRunning) // Statement for thread. If the thread is running, it will not run again.
+                {
+                    DispatcherTimer timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromSeconds(2);
+                    timer.Tick += Timer_Tick; // listening for event
+                    timer.Start();
+                    _isTimerRunning = true;
+                }
+                return;
+
+            }
+
+            if (comboBoxLibraryData.SelectedItem.ToString() == "Table")
+            {
+                DBConnection.AddNewLibraryData("TablesForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text);
+            }
+            else if (comboBoxLibraryData.SelectedItem.ToString() == "Chair")
+            {
+                DBConnection.AddNewLibraryData("ChairsForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text);
+            }
+            if (comboBoxLibraryData.SelectedItem.ToString() == "Cupboard")
+            {
+                DBConnection.AddNewLibraryData("CupBoardsForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text);
+            }
+
+
+        }
+
+        private void comboBoxLibraryData_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            
         }
     }
 

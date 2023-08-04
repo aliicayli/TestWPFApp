@@ -133,7 +133,7 @@ xmlns:gridDesktop="clr-namespace:Aspose.Cells.GridDesktop;assembly=Aspose.Cells.
 
 
             <StackPanel Grid.Row="5"  Margin="0,199.6,238.4,0">
-                <ComboBox x:Name="comboBoxLibraryData" Margin="0,0,-0.4,0"/>
+                <ComboBox x:Name="comboBoxLibraryData" ItemsSource="{Binding comboboxLibraryContex}" Margin="0,0,-0.4,0" DataContextChanged="comboBoxLibraryData_DataContextChanged"/>
             </StackPanel>
             <TextBox x:Name="txtProductName" HorizontalAlignment="Left" Height="23" Margin="99.6,240.6,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
             <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="23" Margin="99.6,280.6,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
@@ -159,7 +159,7 @@ xmlns:gridDesktop="clr-namespace:Aspose.Cells.GridDesktop;assembly=Aspose.Cells.
                     <TextBlock Text="Delete"/>
                 </StackPanel>
             </Button>
-            <Label x:Name="infoText" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="1,345.8,-2.6,-20" Grid.Row="5" VerticalAlignment="Top" Height="27" Width="352" Grid.RowSpan="2"/>
+            <Label x:Name="infoText" Content=""  Grid.Column="1" HorizontalAlignment="Left" Margin="1,345.8,-2.6,-20" Grid.Row="5" VerticalAlignment="Top" Height="27" Width="352" Grid.RowSpan="2"/>
 
 
 
