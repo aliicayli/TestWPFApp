@@ -104,5 +104,10 @@ namespace TestWPFApp
             WindowState = WindowState.Minimized;
         }
 
+        private void btbLibrary_Click(object sender, RoutedEventArgs e)
+        {
+            LibraryUserControl libraryUserControl = new LibraryUserControl();
+            AdminContent.Content = libraryUserControl;
+        }
     }
 }

@@ -124,6 +124,9 @@
     <Compile Include="LoginAdminWindow .xaml.cs">
       <DependentUpon>LoginAdminWindow .xaml</DependentUpon>
     </Compile>
+    <Compile Include="LibraryUserControl.xaml.cs">
+      <DependentUpon>LibraryUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MemberUserControl.xaml.cs">
       <DependentUpon>MemberUserControl.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LibraryUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MemberUserControl.xaml">
       <SubType>Designer</SubType>

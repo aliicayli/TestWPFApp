@@ -57,3 +57,5 @@ C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\test.g.cs
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\test.baml
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\MemberUserControl.g.cs
 C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\MemberUserControl.baml
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\LibraryUserControl.g.cs
+C:\Users\Ali\Desktop\WPFApps\TestWPFApp\TestWPFApp\obj\Debug\LibraryUserControl.baml
