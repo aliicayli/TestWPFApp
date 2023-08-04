@@ -337,7 +337,7 @@ namespace TestWPFApp
                 return;
             }
 
-            if (comboBoxLibraryData.SelectedItem.ToString().Length == 0)
+            if (comboBoxLibraryData.SelectedItem == null)
             {
                 infoText.Visibility = Visibility.Visible; // opening visibility of info text
                 infoText.Content = "Plase Select a category"; // info text message
