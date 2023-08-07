@@ -9,6 +9,7 @@ using System.Windows;
 using System.Data.Sql;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace TestWPFApp
 {
@@ -237,7 +238,7 @@ namespace TestWPFApp
         }
 
 
-        public static void AddNewLibraryData(string dataType, string productName, string price, string color,string dataBaseName) // Function for new user
+        public static void AddNewLibraryData(string dataType, string productName, string price, string color, string dataBaseName) // Function for new user
         {
             LibraryUserControl libraryUserControl = new LibraryUserControl();
             string[] libraryDataNames = new string[] { "TablesForLibrary", "ChairsForLibrary", "CupBoardsForLibrary" };
@@ -334,6 +335,138 @@ namespace TestWPFApp
             }
 
         }
+
+        public static void CopyDataBase(string dbName)
+        {
+            string databaseName = dbName;
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string connectionString = "Data Source=" + desktopPath + "\\" + databaseName + ".db;Version=3;";
+            SQLiteConnection connection = new SQLiteConnection(connectionString);
+            connection.Open();
+
+            // Veritabanının var olup olmadığını kontrol etmek için, dosya yolunu kontrol ediyoruz
+            if (File.Exists(desktopPath + "\\" + databaseName + ".db"))
+            {
+                // Veritabanı varsa, yeni bir veritabanı oluşturuyoruz
+                string newDatabaseName = databaseName + "_Copy";
+                string newConnectionString = "Data Source=" + desktopPath + "\\" + newDatabaseName + ".db;Version=3;";
+                SQLiteConnection newConnection = new SQLiteConnection(newConnectionString);
+                newConnection.Open();
+
+                // Var olan veritabanındaki tablo isimlerini alıyoruz
+                string sql = "SELECT name FROM sqlite_master WHERE type='table' AND name<>'sqlite_sequence'";
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                // Her bir tablo için yeni veritabanında aynı tabloyu oluşturuyoruz ve içindeki değerleri kopyalıyoruz
+                while (reader.Read())
+                {
+                    string tableName = reader["name"].ToString();
+                    // Tablo yapısını almak için PRAGMA komutunu kullanıyoruz
+                    sql = "PRAGMA table_info(" + tableName + ")";
+                    command = new SQLiteCommand(sql, connection);
+                    SQLiteDataReader tableReader = command.ExecuteReader();
+                    // Tablo yapısını saklamak için bir liste oluşturuyoruz
+                    List<string> columns = new List<string>();
+                    // Yeni veritabanında tablo oluşturmak için SQL sorgusunu hazırlıyoruz
+                    sql = "CREATE TABLE " + tableName + "(";
+                    while (tableReader.Read())
+                    {
+                        // Her bir sütun için isim, tip ve anahtar bilgilerini alıyoruz
+                        string columnName = tableReader["name"].ToString();
+                        string columnType = tableReader["type"].ToString();
+                        bool columnPK = Convert.ToBoolean(tableReader["pk"]);
+                        // Sütun isimlerini listeye ekliyoruz
+                        columns.Add(columnName);
+                        // SQL sorgusuna sütun bilgilerini ekliyoruz
+                        sql += columnName + " " + columnType;
+                        if (columnPK)
+                        {
+                            sql += " PRIMARY KEY";
+                        }
+                        sql += ",";
+                    }
+                    // SQL sorgusunu bitiriyoruz
+                    sql = sql.TrimEnd(',') + ")";
+                    // Yeni veritabanında tabloyu oluşturuyoruz
+                    SQLiteCommand newCommand = new SQLiteCommand(sql, newConnection);
+                    newCommand.ExecuteNonQuery();
+                    // Var olan veritabanından tablonun değerlerini alıyoruz
+                    sql = "SELECT * FROM " + tableName;
+                    command = new SQLiteCommand(sql, connection); tableReader = command.ExecuteReader();
+                    // Her bir değer için yeni veritabanına ekleme yapmak için SQL sorgusunu hazırlıyoruz
+                    sql = "INSERT INTO " + tableName + "(" + string.Join(",", columns) + ") VALUES (";
+                    foreach (string column in columns)
+                    {
+                        sql += "@" + column + ",";
+                    }
+                    // SQL sorgusunu bitiriyoruz
+                    sql = sql.TrimEnd(',') + ")";
+                    newCommand = new SQLiteCommand(sql, newConnection);
+                    // Her bir değer için parametreleri atayarak yeni veritabanına ekleme yapıyoruz
+                    while (tableReader.Read())
+                    {
+                        foreach (string column in columns)
+                        {
+                            newCommand.Parameters.AddWithValue("@" + column, tableReader[column]);
+                        }
+                        newCommand.ExecuteNonQuery();
+                        newCommand.Parameters.Clear();
+                    }
+                }
+                // Bağlantıları kapatıyoruz
+                connection.Close();
+                newConnection.Close();
+            }
+            else
+            {
+                // Veritabanı yoksa, yeni bir veritabanı oluşturuyoruz ve istediğimiz tabloları ekliyoruz
+                // Örneğin, Customers adında bir tablo ekleyelim
+                string sql = "CREATE TABLE Customers (CustomerID INTEGER PRIMARY KEY, FirstName TEXT, LastName TEXT, Email TEXT)";
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                command.ExecuteNonQuery();
+                // Bağlantıyı kapatıyoruz
+                connection.Close();
+            }
+        }
+
+
+        public static void ListDataForNewStates(DataGrid dataGrid, string dataBaseName)
+        {
+            string[] libraryDataNames = new string[] { "TablesForLibrary", "ChairsForLibrary", "CupBoardsForLibrary" };
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            string connectionString = "Data Source=" + desktopPath + "\\" + dataBaseName + ".db;Version=3;";
+            ObservableCollection<Library> libraries = new ObservableCollection<Library>();
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                for (int i = 0; i < libraryDataNames.Length; i++)
+                {
+                    string query = "SELECT * FROM " + libraryDataNames[i];
+                    SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
+                    SQLiteDataAdapter adaptor = new SQLiteDataAdapter(sQLiteCommand);
+                    DataTable dataTable = new DataTable(libraryDataNames[i]);
+                    adaptor.Fill(dataTable);
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        libraries.Add(new Library { ProductName = row["productName"].ToString(), Price = row["price"].ToString(), Color = row["color"].ToString() });
+                    }
+                }
+
+
+
+
+
+
+                // dataGrid.ItemsSource = dataTable.DefaultView;
+                dataGrid.ItemsSource = libraries;
+            }
+
+        }
+
     }
 }
 

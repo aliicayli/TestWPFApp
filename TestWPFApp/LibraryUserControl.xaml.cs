@@ -385,6 +385,16 @@ namespace TestWPFApp
         {
             DBConnection.NewDatabase(txtDatabaseName.Text);
         }
+
+        private void btnCopyDatabase_Click(object sender, RoutedEventArgs e)
+        {
+            DBConnection.CopyDataBase(txtCopyDatabaseName.Text);
+        }
+
+        private void btnDataBaseForList_Click(object sender, RoutedEventArgs e)
+        {
+            DBConnection.ListDataForNewStates(librariesDataGrid, txtDataBaseNameForList.Text);
+        }
     }
 
     public class Library

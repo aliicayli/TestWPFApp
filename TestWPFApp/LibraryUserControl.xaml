@@ -162,6 +162,20 @@ xmlns:gridDesktop="clr-namespace:Aspose.Cells.GridDesktop;assembly=Aspose.Cells.
                     <TextBlock Text="New Database"/>
                 </StackPanel>
             </Button>
+            <TextBox x:Name="txtCopyDatabaseName" HorizontalAlignment="Left" Height="23" Margin="55,13.8,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtDatabaseName_TextChanged" Grid.Column="1"/>
+            <Button x:Name="btnCopyDatabase" Style="{StaticResource addButton}" Margin="0,11.8,315.4,17" Click="btnCopyDatabase_Click" Grid.Row="2" Height="Auto" Width="105" Grid.ColumnSpan="2">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                    <TextBlock Text="Copy Database"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnGetDataBaseForList" Style="{StaticResource addButton}" Margin="0,242,5.4,110" Click="btnCopyDatabase_Click" Grid.Row="5" Height="Auto" Width="105" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                    <TextBlock Text="List Data"/>
+                </StackPanel>
+            </Button>
+            <TextBox x:Name="txtDataBaseNameForList" HorizontalAlignment="Left" Height="23" Margin="230,276,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtDatabaseName_TextChanged" Grid.Column="1"/>
 
 
 
