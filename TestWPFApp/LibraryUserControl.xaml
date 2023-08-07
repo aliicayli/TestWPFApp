@@ -64,11 +64,6 @@ xmlns:gridDesktop="clr-namespace:Aspose.Cells.GridDesktop;assembly=Aspose.Cells.
             <Separator Height="1" Grid.Row="2" Background="#DAE2EA" Margin="0,53.6,0,9.4" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
             <!--Tab buttons-->
-            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,9.6,0,9.4" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <Button Style="{StaticResource tabButton}" Content="Club staff" BorderBrush="#784FF2"/>
-                <Button Style="{StaticResource tabButton}" Content="Players"/>
-                <Button Style="{StaticResource tabButton}" Content="Archived"/>
-            </StackPanel>
 
             <!--Counter Title-->
             <TextBlock Text="68 Club Staff" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,13.6,0,14.4"/>
@@ -132,7 +127,7 @@ xmlns:gridDesktop="clr-namespace:Aspose.Cells.GridDesktop;assembly=Aspose.Cells.
 
 
 
-            <StackPanel Grid.Row="5"  Margin="0,199.6,238.4,0">
+            <StackPanel Grid.Row="5"  Margin="-2,257.8,240,32">
                 <ComboBox x:Name="comboBoxLibraryData" ItemsSource="{Binding comboboxLibraryContex}" Margin="0,0,-0.4,0" DataContextChanged="comboBoxLibraryData_DataContextChanged"/>
             </StackPanel>
             <TextBox x:Name="txtProductName" HorizontalAlignment="Left" Height="23" Margin="99.6,240.6,0,0" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
@@ -160,6 +155,13 @@ xmlns:gridDesktop="clr-namespace:Aspose.Cells.GridDesktop;assembly=Aspose.Cells.
                 </StackPanel>
             </Button>
             <Label x:Name="infoText" Content=""  Grid.Column="1" HorizontalAlignment="Left" Margin="1,345.8,-2.6,-20" Grid.Row="5" VerticalAlignment="Top" Height="27" Width="352" Grid.RowSpan="2"/>
+            <TextBox x:Name="txtDatabaseName" HorizontalAlignment="Left" Height="23" Margin="140,11.8,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtDatabaseName_TextChanged"/>
+            <Button x:Name="btnNewSatabase" Style="{StaticResource addButton}" Margin="0,9.6,280,19.2" Click="btnNewatabase_Click" Grid.Row="2" Height="Auto" Width="105">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                    <TextBlock Text="New Database"/>
+                </StackPanel>
+            </Button>
 
 
 

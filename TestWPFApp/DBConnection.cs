@@ -237,12 +237,16 @@ namespace TestWPFApp
         }
 
 
-        public static void AddNewLibraryData(string dataType, string productName, string price, string color) // Function for new user
+        public static void AddNewLibraryData(string dataType, string productName, string price, string color,string dataBaseName) // Function for new user
         {
             LibraryUserControl libraryUserControl = new LibraryUserControl();
+            string[] libraryDataNames = new string[] { "TablesForLibrary", "ChairsForLibrary", "CupBoardsForLibrary" };
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            string connectionString = "Data Source=" + desktopPath + "\\" + dataBaseName + ".db;Version=3;";
 
             string query = "";
-            using (SQLiteConnection connection = new SQLiteConnection(DBPath)) // Reference for connection SQLite database
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString)) // Reference for connection SQLite database
             {
                 try
                 {
@@ -276,17 +280,20 @@ namespace TestWPFApp
 
 
         }
-        public static void ListAllLibraryDatas(DataGrid dataGrid)
+        public static void ListAllLibraryDatas(DataGrid dataGrid, string dataBaseName)
         {
             string[] libraryDataNames = new string[] { "TablesForLibrary", "ChairsForLibrary", "CupBoardsForLibrary" };
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            string connectionString = "Data Source=" + desktopPath + "\\" + dataBaseName + ".db;Version=3;";
             ObservableCollection<Library> libraries = new ObservableCollection<Library>();
 
-            using (SQLiteConnection connection = new SQLiteConnection(DBPath))
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
                 for (int i = 0; i < libraryDataNames.Length; i++)
                 {
-                    string query = "SELECT * FROM "+ libraryDataNames[i];
+                    string query = "SELECT * FROM " + libraryDataNames[i];
                     SQLiteCommand sQLiteCommand = new SQLiteCommand(query, connection);
                     SQLiteDataAdapter adaptor = new SQLiteDataAdapter(sQLiteCommand);
                     DataTable dataTable = new DataTable(libraryDataNames[i]);
@@ -306,6 +313,26 @@ namespace TestWPFApp
                 // dataGrid.ItemsSource = dataTable.DefaultView;
                 dataGrid.ItemsSource = libraries;
             }
+        }
+
+
+        public static void NewDatabase(string dataBaseName)
+        {
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            string connectionString = "Data Source=" + desktopPath + "\\" + dataBaseName + ".db;Version=3;";
+            SQLiteConnection connection = new SQLiteConnection(connectionString);
+            connection.Open();
+            string[] libraryDataNames = new string[] { "TablesForLibrary", "ChairsForLibrary", "CupBoardsForLibrary" };
+
+            for (int i = 0; i < libraryDataNames.Length; i++)
+            {
+                string sql = "CREATE TABLE " + libraryDataNames[i] + " (ID INTEGER PRIMARY KEY, productName TEXT, color TEXT, price TEXT)";
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                command.ExecuteNonQuery();
+
+            }
+
         }
     }
 }

@@ -39,7 +39,7 @@ namespace TestWPFApp
             InitializeComponent();
             comboboxLibraryContex = new string[] { "Table", "Chair", "Cupboard" };
             DataContext = this ;
-        DBConnection.ListAllLibraryDatas(librariesDataGrid);
+        //DBConnection.ListAllLibraryDatas(librariesDataGrid,txtDatabaseName.Text);
         }
 
         private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -355,23 +355,35 @@ namespace TestWPFApp
 
             if (comboBoxLibraryData.SelectedItem.ToString() == "Table")
             {
-                DBConnection.AddNewLibraryData("TablesForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text);
+                DBConnection.AddNewLibraryData("TablesForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text,txtDatabaseName.Text);
             }
             else if (comboBoxLibraryData.SelectedItem.ToString() == "Chair")
             {
-                DBConnection.AddNewLibraryData("ChairsForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text);
+                DBConnection.AddNewLibraryData("ChairsForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text, txtDatabaseName.Text);
             }
             if (comboBoxLibraryData.SelectedItem.ToString() == "Cupboard")
             {
-                DBConnection.AddNewLibraryData("CupBoardsForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text);
+                DBConnection.AddNewLibraryData("CupBoardsForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text, txtDatabaseName.Text);
             }
 
+
+            DBConnection.ListAllLibraryDatas(librariesDataGrid,txtDatabaseName.Text);
 
         }
 
         private void comboBoxLibraryData_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             
+        }
+
+        private void txtDatabaseName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void btnNewatabase_Click(object sender, RoutedEventArgs e)
+        {
+            DBConnection.NewDatabase(txtDatabaseName.Text);
         }
     }
 
