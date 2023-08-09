@@ -390,7 +390,7 @@ namespace TestWPFApp
             }
             else
             {
-                -
+                
                 return false;
             }
         }

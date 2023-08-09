@@ -319,7 +319,7 @@ namespace TestWPFApp
             // Excel dosyasını kaydetmek isteyip istemediğinizi soran bir dialog oluşturun
 
         }
-        #endregion
+        #endregion;
         private void btnAddData_Click(object sender, RoutedEventArgs e)
         {
 
