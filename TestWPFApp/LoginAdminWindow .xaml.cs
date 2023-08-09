@@ -24,6 +24,7 @@ namespace TestWPFApp
         public LoginAdminWindow()
         {
             InitializeComponent(); // Initialize this window
+
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) // Drag and drop function for window
         {

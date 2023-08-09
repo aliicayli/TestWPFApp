@@ -38,10 +38,11 @@ namespace TestWPFApp
         {
             InitializeComponent();
             comboboxLibraryContex = new string[] { "Table", "Chair", "Cupboard" };
-            DataContext = this ;
-        //DBConnection.ListAllLibraryDatas(librariesDataGrid,txtDatabaseName.Text);
+            DataContext = this;
+            //DBConnection.ListAllLibraryDatas(librariesDataGrid,txtDatabaseName.Text);
         }
 
+        #region Functions for db 
         private void membersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //if (membersDataGrid.SelectedItem != null)
@@ -106,9 +107,9 @@ namespace TestWPFApp
         }
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-        //    DBConnection.UpdateUser(txtName.Text, password, txtMail.Text, txtPhoneNumber.Text);
-        //    DBConnection.ListAllUsers(membersDataGrid);
-        //    infoText.Visibility = Visibility.Visible; // opening visibility of info text
+            //    DBConnection.UpdateUser(txtName.Text, password, txtMail.Text, txtPhoneNumber.Text);
+            //    DBConnection.ListAllUsers(membersDataGrid);
+            //    infoText.Visibility = Visibility.Visible; // opening visibility of info text
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -307,7 +308,7 @@ namespace TestWPFApp
             //}
 
 
-           
+
 
         }
 
@@ -316,13 +317,13 @@ namespace TestWPFApp
         {
             test a = new test();
             // Excel dosyasını kaydetmek isteyip istemediğinizi soran bir dialog oluşturun
-           
-        }
 
+        }
+        #endregion
         private void btnAddData_Click(object sender, RoutedEventArgs e)
         {
 
-            if (txtProductName.Text.Length == 0 ||txtPrice.Text.Length == 0 || txtColor.Text.Length == 0)
+            if (txtProductName.Text.Length == 0 || txtPrice.Text.Length == 0 || txtColor.Text.Length == 0)
             {
                 infoText.Visibility = Visibility.Visible; // opening visibility of info text
                 infoText.Content = "Fill all required fields"; // info text message
@@ -355,7 +356,7 @@ namespace TestWPFApp
 
             if (comboBoxLibraryData.SelectedItem.ToString() == "Table")
             {
-                DBConnection.AddNewLibraryData("TablesForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text,txtDatabaseName.Text);
+                DBConnection.AddNewLibraryData("TablesForLibrary", txtProductName.Text, txtPrice.Text, txtColor.Text, txtDatabaseName.Text);
             }
             else if (comboBoxLibraryData.SelectedItem.ToString() == "Chair")
             {
@@ -367,13 +368,13 @@ namespace TestWPFApp
             }
 
 
-            DBConnection.ListAllLibraryDatas(librariesDataGrid,txtDatabaseName.Text);
+            DBConnection.ListAllLibraryDatas(librariesDataGrid, txtDatabaseName.Text);
 
         }
 
         private void comboBoxLibraryData_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            
+
         }
 
         private void txtDatabaseName_TextChanged(object sender, TextChangedEventArgs e)
@@ -388,12 +389,147 @@ namespace TestWPFApp
 
         private void btnCopyDatabase_Click(object sender, RoutedEventArgs e)
         {
-            DBConnection.CopyDataBase(txtCopyDatabaseName.Text);
+            if (comboBoxTables_Copy.SelectedItem.ToString().Length == 0 || comboBoxTables_Copy.SelectedItem.ToString() == "All")
+            {
+                if (DBConnection.CopyDataBase(comboBoxDatabases.SelectedValue.ToString(), comboBoxDatabasesForCopied_Copy.SelectedValue.ToString().Remove(comboBoxDatabasesForCopied_Copy.SelectedValue.ToString().Length-3)))
+                {
+                    infoText.Visibility = Visibility.Visible; // opening visibility of info text
+                    infoText.Content = "Copied"; // info text message
+                    if (!_isTimerRunning) // Statement for thread. If the thread is running, it will not run again.
+                    {
+                        DispatcherTimer timer = new DispatcherTimer();
+                        timer.Interval = TimeSpan.FromSeconds(2);
+                        timer.Tick += Timer_Tick; // listening for event
+                        timer.Start();
+                        _isTimerRunning = true;
+                    }
+                    return;
+                }
+                else
+                {
+
+                    infoText.Visibility = Visibility.Visible; // opening visibility of info text
+                    infoText.Content = "Not copied"; // info text message
+                    if (!_isTimerRunning) // Statement for thread. If the thread is running, it will not run again.
+                    {
+                        DispatcherTimer timer = new DispatcherTimer();
+                        timer.Interval = TimeSpan.FromSeconds(2);
+                        timer.Tick += Timer_Tick; // listening for event
+                        timer.Start();
+                        _isTimerRunning = true;
+                    }
+                    return;
+                }
+            }
+            else
+            {
+                DBConnection.CopyTable(comboBoxDatabases.SelectedValue.ToString(), comboBoxDatabasesForCopied_Copy.SelectedValue.ToString().Remove(comboBoxDatabasesForCopied_Copy.SelectedValue.ToString().Length - 3), comboBoxTables_Copy.SelectedValue.ToString());
+
+            }
+
+
+
         }
 
-        private void btnDataBaseForList_Click(object sender, RoutedEventArgs e)
+
+
+        private void btnGetDataBaseForList_Click(object sender, RoutedEventArgs e)
         {
-            DBConnection.ListDataForNewStates(librariesDataGrid, txtDataBaseNameForList.Text);
+           // DBConnection.ListDataForNewStates(librariesDataGrid, txtDataBaseNameForList.Text);
+            DBConnection.ListDataForNewStates(librariesDataGrid, comboBoxDatabasesForList_Copy.SelectedValue.ToString().Remove(comboBoxDatabasesForList_Copy.SelectedValue.ToString().Length -3));
+
+        }
+
+
+
+        private void comboBoxDatabases_DropDownOpened(object sender, EventArgs e)
+        {
+            string[] files = System.IO.Directory.GetFiles(@"C:\Users\Ali\Desktop\Databases", "*.db");
+            List<string> fileNames = new List<string>();
+            foreach (string file in files)
+            {
+                fileNames.Add(System.IO.Path.GetFileName(file));
+            }
+            comboBoxDatabases.ItemsSource = fileNames;
+        }
+
+        private void btnCopyTable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void comboBoxTables_DropDownOpened(object sender, EventArgs e)
+        {
+            if (comboBoxDatabases.SelectedItem  !=null)
+            {
+                DBConnection.GetTables(comboBoxDatabases.SelectedItem.ToString(), comboBoxTables_Copy);
+
+            }
+        }
+
+        private void checkboxData_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("test");
+            
+            
+            
+        }
+
+        private void comboBoxDatabasesForList(object sender, EventArgs e)
+        {
+
+            string[] files = System.IO.Directory.GetFiles(@"C:\Users\Ali\Desktop\Databases", "*.db");
+            List<string> fileNames = new List<string>();
+            foreach (string file in files)
+            {
+                fileNames.Add(System.IO.Path.GetFileName(file));
+            }
+            comboBoxDatabasesForList_Copy.ItemsSource = fileNames;
+        }
+
+        private void comboBoxDatabasesForCopied_CopyDropDownOpened(object sender, EventArgs e)
+        {
+            string[] files = System.IO.Directory.GetFiles(@"C:\Users\Ali\Desktop\Databases", "*.db");
+            List<string> fileNames = new List<string>();
+            foreach (string file in files)
+            {
+                fileNames.Add(System.IO.Path.GetFileName(file));
+            }
+            comboBoxDatabasesForCopied_Copy.ItemsSource = fileNames;
+        }
+        ObservableCollection<Library> selectedCustomers = new ObservableCollection<Library>();
+
+        private void checkBoxData_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void checkBoxData_Checked(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void librariesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        
+            
+
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            // Tıklanan checkboxı bulma
+            CheckBox cb = sender as CheckBox;
+
+            // Tıklanan checkboxın bağlı olduğu Library nesnesini bulma
+            Library item = cb.DataContext as Library;
+
+            // Library nesnesinin checkbox özelliğini güncelleme
+            item.Checkbox = cb.IsChecked.Value;
+        }
+
+        private void testCopied_Click(object sender, RoutedEventArgs e)
+        {
+            DBConnection.CopySelectedRows(librariesDataGrid, "test.db", "test2.db", "ChairsForLibrary");
         }
     }
 
@@ -405,6 +541,9 @@ namespace TestWPFApp
         public string ProductName { get; set; }
         public string Price { get; set; }
         public string Email { get; set; }
+        public bool Checkbox { get; set; }
+
+
     }
-   
+
 }
